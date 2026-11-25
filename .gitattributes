@@ -1,0 +1,3 @@
+
+# Exclude frontend styling from repository language statistics
+frontend/style.css -linguist-detectable
