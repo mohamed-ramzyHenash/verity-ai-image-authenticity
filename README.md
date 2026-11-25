@@ -10,13 +10,11 @@ The project combines a modern web interface with a Python backend and deep learn
 
 ## Application Preview
 
-![VERITY AI Application Preview](assets/verity-ai-preview.png)
+![VERITY AI Preview](assets/verity-ai-preview.png)
 
 ## Application Demo
 
-Watch VERITY AI in action:
-
-[▶ Watch the VERITY AI Demo](assets/verity-ai-demo.mp4)
+![VERITY AI Demo](assets/verity-ai-demo.gif)
 
 ---
 
