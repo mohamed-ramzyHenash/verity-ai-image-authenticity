@@ -1,0 +1,145 @@
+
+# =========================================
+# Python Cache
+# =========================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# =========================================
+# Virtual Environments
+# =========================================
+
+.venv/
+venv/
+env/
+ENV/
+backend/.venv/
+
+# =========================================
+# Environment Variables and Secrets
+# =========================================
+
+.env
+.env.*
+!.env.example
+!.env.template
+
+# =========================================
+# Dataset and Local Data
+# =========================================
+
+/data/
+/backend/data/
+
+datasets/
+dataset/
+
+# Kaggle and local training data
+kaggle.json
+kaggle/
+input/
+
+# =========================================
+# Trained Models and Checkpoints
+# =========================================
+
+*.keras
+*.h5
+*.hdf5
+*.weights
+*.weights.h5
+
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.tflite
+
+# TensorFlow SavedModel directories
+saved_model/
+saved_model.pb
+
+# =========================================
+# Training Outputs and Logs
+# =========================================
+
+logs/
+runs/
+tensorboard/
+wandb/
+mlruns/
+
+*.log
+
+# =========================================
+# Python Build Artifacts
+# =========================================
+
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+
+# =========================================
+# Testing and Code Quality
+# =========================================
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# =========================================
+# Jupyter Notebook
+# =========================================
+
+.ipynb_checkpoints/
+
+# =========================================
+# Temporary Files
+# =========================================
+
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# =========================================
+# IDE and Editor Settings
+# =========================================
+
+.vscode/
+.idea/
+
+# =========================================
+# Node.js
+# =========================================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+frontend/dist/
+frontend/build/
+
+# =========================================
+# Operating System Files
+# =========================================
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# =========================================
+# Local Uploads and Temporary Storage
+# =========================================
+
+backend/uploads/
+backend/temp/
+backend/tmp/

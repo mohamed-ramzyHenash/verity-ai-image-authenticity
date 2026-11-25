@@ -1,0 +1,663 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#080d19">
+    <meta name="description" content="Explore image authenticity with Verity AI. Upload an image and receive an AI-powered visual analysis.">
+
+    <title>Verity AI | Image Authenticity</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <div class="app-shell">
+
+        <!-- Navigation -->
+        <nav class="navbar" aria-label="Main navigation">
+
+            <a href="/" class="brand" aria-label="Verity AI home">
+
+                <div class="brand-icon">
+                    <span>V</span>
+                </div>
+
+                <div class="brand-text">
+                    <strong>VERITY<span>AI</span></strong>
+                    <small>IMAGE INTELLIGENCE</small>
+                </div>
+
+            </a>
+
+            <div class="nav-right">
+
+                <div class="system-status" id="systemStatus" role="status" aria-live="polite">
+                    <span class="status-dot" id="statusDot"></span>
+                    <span id="statusText">Connecting...</span>
+                </div>
+
+                <div class="model-tag">
+                    <span class="model-indicator"></span>
+                    IMAGE ANALYSIS
+                </div>
+
+            </div>
+
+        </nav>
+
+
+        <main>
+
+            <!-- Hero -->
+            <section class="hero">
+
+                <div class="eyebrow">
+                    <span class="eyebrow-line"></span>
+                    AI-POWERED IMAGE ANALYSIS
+                </div>
+
+                <h1>
+                    Is it <span class="gradient-text">Real</span>
+                    or <span class="gradient-text">AI?</span>
+                </h1>
+
+                <p class="hero-description">
+                    Explore the story behind an image. Upload a portrait and discover
+                    whether it looks like a real photograph or AI-generated content.
+                </p>
+
+                <div class="hero-meta" aria-label="How it works">
+
+                    <span>
+                        <span class="meta-icon">01</span>
+                        Upload image
+                    </span>
+
+                    <span class="meta-divider"></span>
+
+                    <span>
+                        <span class="meta-icon">02</span>
+                        Analyze
+                    </span>
+
+                    <span class="meta-divider"></span>
+
+                    <span>
+                        <span class="meta-icon">03</span>
+                        Explore results
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- Analysis Workspace -->
+            <section class="workspace" aria-label="Image analysis workspace">
+
+                <!-- Upload Panel -->
+                <section class="panel upload-panel" aria-labelledby="uploadHeading">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <span class="section-index">01 / INPUT</span>
+                            <h2 id="uploadHeading">Upload an image</h2>
+                        </div>
+
+                        <span class="file-limit">MAX 10 MB</span>
+
+                    </div>
+
+
+                    <div
+                        class="dropzone"
+                        id="dropzone"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Choose an image or drag and drop"
+                    >
+
+                        <input
+                            type="file"
+                            id="fileInput"
+                            accept="image/jpeg,image/png"
+                            hidden
+                        >
+
+                        <div class="upload-placeholder" id="uploadPlaceholder">
+
+                            <div class="upload-icon" aria-hidden="true">
+
+                                <svg viewBox="0 0 24 24" fill="none">
+
+                                    <path
+                                        d="M12 16V4M12 4L7 9M12 4L17 9"
+                                        stroke="currentColor"
+                                        stroke-width="1.7"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+
+                                    <path
+                                        d="M5 14V18C5 19.1 5.9 20 7 20H17C18.1 20 19 19.1 19 18V14"
+                                        stroke="currentColor"
+                                        stroke-width="1.7"
+                                        stroke-linecap="round"
+                                    />
+
+                                </svg>
+
+                            </div>
+
+                            <h3>Drop your image here</h3>
+
+                            <p>
+                                or
+                                <button
+                                    type="button"
+                                    class="browse-button"
+                                    id="browseButton"
+                                >
+                                    browse files
+                                </button>
+                            </p>
+
+                            <div class="supported-formats" aria-label="Supported formats">
+                                <span>JPG</span>
+                                <span>JPEG</span>
+                                <span>PNG</span>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Image Preview -->
+                        <div class="image-preview" id="imagePreview" hidden>
+
+                            <img
+                                id="previewImage"
+                                alt="Selected image preview"
+                            >
+
+                            <div class="preview-overlay">
+                                <span class="preview-label">IMAGE SELECTED</span>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Scanning Animation -->
+                        <div class="scan-line" id="scanLine" hidden></div>
+
+                    </div>
+
+
+                    <!-- File Information -->
+                    <div class="file-information" id="fileInformation" hidden>
+
+                        <div class="file-icon" aria-hidden="true">
+                            IMG
+                        </div>
+
+                        <div class="file-details">
+
+                            <strong id="fileName">image.jpg</strong>
+
+                            <span id="fileMeta">
+                                0 MB · 0 × 0 px
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="remove-button"
+                            id="removeButton"
+                            type="button"
+                            aria-label="Remove selected image"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+                    <div class="upload-footer">
+
+                        <span class="security-note">
+                            <span class="security-icon" aria-hidden="true">✓</span>
+                            JPEG and PNG images supported
+                        </span>
+
+                        <span class="upload-hint">10 MB LIMIT</span>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Results Panel -->
+                <section class="panel results-panel" aria-labelledby="resultsHeading">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <span class="section-index">02 / INSIGHTS</span>
+                            <h2 id="resultsHeading">Your results</h2>
+                        </div>
+
+                        <span class="result-badge" id="resultBadge">
+                            WAITING
+                        </span>
+
+                    </div>
+
+
+                    <!-- Empty State -->
+                    <div class="empty-state" id="emptyState">
+
+                        <div class="empty-visual" aria-hidden="true">
+
+                            <div class="visual-ring ring-one"></div>
+                            <div class="visual-ring ring-two"></div>
+
+                            <div class="visual-core">
+
+                                <svg viewBox="0 0 24 24" fill="none">
+
+                                    <path
+                                        d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                    />
+
+                                    <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="3"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                    />
+
+                                </svg>
+
+                            </div>
+
+                        </div>
+
+                        <h3>Ready when you are</h3>
+
+                        <p>
+                            Upload an image to explore its authenticity prediction
+                            and probability scores.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Loading State -->
+                    <div class="loading-state" id="loadingState" hidden>
+
+                        <div class="loader" aria-hidden="true">
+
+                            <div class="loader-ring"></div>
+                            <div class="loader-core">AI</div>
+
+                        </div>
+
+                        <h3>Analyzing your image</h3>
+
+                        <p>
+                            Taking a closer look at the visual details...
+                        </p>
+
+                        <div class="loading-progress" aria-hidden="true">
+                            <div class="loading-progress-bar"></div>
+                        </div>
+
+                        <span class="loading-caption">
+                            VISUAL ANALYSIS IN PROGRESS
+                        </span>
+
+                    </div>
+
+
+                    <!-- Error State -->
+                    <div class="error-state" id="errorState" hidden>
+
+                        <div class="error-icon" aria-hidden="true">!</div>
+
+                        <h3>We couldn't analyze this image</h3>
+
+                        <p id="errorMessage">
+                            Something went wrong. Please try again.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="retryButton"
+                        >
+                            Try again
+                        </button>
+
+                    </div>
+
+
+                    <!-- Result State -->
+                    <div class="result-content" id="resultContent" hidden>
+
+                        <div class="prediction-header">
+
+                            <div>
+
+                                <span class="prediction-label">
+                                    PREDICTION
+                                </span>
+
+                                <h3 id="predictionTitle">
+                                    REAL IMAGE
+                                </h3>
+
+                                <p id="predictionDescription">
+                                    The image appears to be a real photograph.
+                                </p>
+
+                            </div>
+
+                            <div
+                                class="prediction-symbol"
+                                id="predictionSymbol"
+                                aria-hidden="true"
+                            >
+                                R
+                            </div>
+
+                        </div>
+
+
+                        <!-- Confidence -->
+                        <div class="confidence-card">
+
+                            <div class="confidence-heading">
+
+                                <span>PREDICTION CONFIDENCE</span>
+
+                                <strong id="confidenceValue">0%</strong>
+
+                            </div>
+
+                            <div
+                                class="confidence-track"
+                                role="progressbar"
+                                id="confidenceProgress"
+                                aria-label="Prediction confidence"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                aria-valuenow="0"
+                            >
+
+                                <div
+                                    class="confidence-fill"
+                                    id="confidenceFill"
+                                ></div>
+
+                            </div>
+
+                            <div class="confidence-caption">
+                                The estimated confidence in the predicted class.
+                            </div>
+
+                        </div>
+
+
+                        <!-- Probability Breakdown -->
+                        <div class="probability-section">
+
+                            <div class="subsection-heading">
+
+                                <h4>Probability breakdown</h4>
+
+                                <span>ESTIMATED SCORES</span>
+
+                            </div>
+
+
+                            <!-- Real Probability -->
+                            <div class="probability-item">
+
+                                <div class="probability-info">
+
+                                    <div class="probability-name">
+
+                                        <span class="probability-dot real-dot"></span>
+
+                                        Real photograph
+
+                                    </div>
+
+                                    <strong id="realValue">0%</strong>
+
+                                </div>
+
+                                <div
+                                    class="probability-track"
+                                    role="progressbar"
+                                    id="realProgress"
+                                    aria-label="Real photograph probability"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    aria-valuenow="0"
+                                >
+
+                                    <div
+                                        class="probability-fill real-fill"
+                                        id="realFill"
+                                    ></div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- AI Probability -->
+                            <div class="probability-item">
+
+                                <div class="probability-info">
+
+                                    <div class="probability-name">
+
+                                        <span class="probability-dot ai-dot"></span>
+
+                                        AI-generated
+
+                                    </div>
+
+                                    <strong id="aiValue">0%</strong>
+
+                                </div>
+
+                                <div
+                                    class="probability-track"
+                                    role="progressbar"
+                                    id="aiProgress"
+                                    aria-label="AI-generated probability"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    aria-valuenow="0"
+                                >
+
+                                    <div
+                                        class="probability-fill ai-fill"
+                                        id="aiFill"
+                                    ></div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="result-divider"></div>
+
+
+                        <!-- Result Footer -->
+                        <div class="result-footer">
+
+                            <div class="result-file">
+
+                                <span class="result-file-icon" aria-hidden="true">
+                                    IMG
+                                </span>
+
+                                <div>
+
+                                    <span class="result-file-label">
+                                        ANALYZED FILE
+                                    </span>
+
+                                    <strong id="resultFileName">
+                                        image.jpg
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                            <span class="analysis-complete">
+                                <span></span>
+                                ANALYSIS COMPLETE
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="primary-button"
+                            id="newAnalysisButton"
+                        >
+                            Analyze another image
+                            <span aria-hidden="true">→</span>
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+            <!-- Product Highlights -->
+            <section class="info-grid" aria-label="Product highlights">
+
+                <article class="info-card">
+
+                    <span class="info-number">01</span>
+
+                    <div>
+                        <h3>Visual Intelligence</h3>
+
+                        <p>
+                            Explore image authenticity through intelligent visual analysis.
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="info-card">
+
+                    <span class="info-number">02</span>
+
+                    <div>
+                        <h3>Instant Insights</h3>
+
+                        <p>
+                            Get a clear prediction and probability breakdown in moments.
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="info-card">
+
+                    <span class="info-number">03</span>
+
+                    <div>
+                        <h3>Simple Experience</h3>
+
+                        <p>
+                            Upload an image, review the result, and explore with confidence.
+                        </p>
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- Disclaimer -->
+            <section class="disclaimer" aria-label="Important information">
+
+                <span class="disclaimer-icon" aria-hidden="true">
+                    i
+                </span>
+
+                <p>
+
+                    <strong>Important:</strong>
+
+                    Results are statistical predictions, not definitive proof
+                    of image authenticity. Performance may vary on images
+                    that differ from the data used to develop the model.
+
+                </p>
+
+            </section>
+
+        </main>
+
+
+        <!-- Footer -->
+        <footer class="footer">
+
+            <a href="/" class="footer-brand">
+                VERITY<span>AI</span>
+            </a>
+
+            <p>
+                A smarter way to explore image authenticity.
+            </p>
+
+            <span class="footer-version">
+                SEE BEYOND THE IMAGE
+            </span>
+
+        </footer>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script>
+    window.API_BASE = "http://127.0.0.1:8000";
+</script>
+
+<script src="app.js"></script>
+</body>
+</html>
