@@ -1,2 +1,3 @@
 # Exclude stylesheet from repository language statistics
 frontend/style.css linguist-documentation
+frontend/index.html linguist-documentation
